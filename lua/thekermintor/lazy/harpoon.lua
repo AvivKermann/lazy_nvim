@@ -1,21 +1,16 @@
 return {
-    {
-        "theprimeagen/harpoon",
-
-        config = function()
-            local harpoon = require("harpoon")
-            harpoon.setup({
-                global_settings = {
-                    save_on_change = true,
-                },
-            })
-
-            vim.keymap.set("n", "<leader>a", function() harpoon.add_file() end)
-            vim.keymap.set("n", "<C-e>", function() harpoon.ui.toggle_quick_menu() end)
-            vim.keymap.set("n", "<leader>r", function() harpoon.remove_file() end)
-            vim.keymap.set("n", "<C-p>", function() harpoon.ui.nav_prev() end)
-            vim.keymap.set("n", "<C-n>", function() harpoon.ui.nav_next() end)
-        end,
-    },
+	"ThePrimeagen/harpoon",
+	lazy = false,
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+	},
+	config = true,
+	keys = {
+		{ "<leader>a", "<cmd>lua require('harpoon.mark').add_file()<cr>", desc = "Mark file with harpoon" },
+		{ "<leader>r", "<cmd>lua require('harpoon.mark').remove_file()<cr>", desc = "Mark file with harpoon" },
+        { "<C-e>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", desc = "Show harpoon marks" },
+		{ "<C-n>", "<cmd>lua require('harpoon.ui').nav_next()<cr>", desc = "Go to next harpoon mark" },
+		{ "<C-p", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", desc = "Go to previous harpoon mark" },
+	},
 }
 
